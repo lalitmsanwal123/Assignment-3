@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Narrow It down</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="angular.min.js"></script>
+    <script src="app.js"></script>
+    <link rel="stylesheet" href="styles/bootstrap.min.css" />
+    <style>
+      .emptyMessage {
+        font-weight: bold;
+        color: red;
+        font-size: 1.2em;
+      }
+      li {
+        margin-bottom: 7px;
+        font-size: 1.2em;
+      }
+      li > button {
+        margin-left: 6px;
+      }
+      button > span {
+        color: green;
+      }
+    </style>
+</head>
+<body ng-app="NarrowItDownApp">
+    <div >
+        <div class="container">
+        <h1>Assignment 2 :Narrow it down</h1>
+
+        <div class="row">
+        <!-- To Buy List -->
+        <div class="col-md-12" ng-controller="NarrowItDownController  as NIDCtrl">
+          <input name="searchTerm" type="text" ng-model="NIDCtrl.searchTerm"  placeholder="Search Term" required>
+          <button type="button" ng-click="NIDCtrl.FindItem(NIDCtrl.searchTerm)">Narrow It Down For Me!</button>
+          <br/>
+          <br/>
+          Your Search Menu List <i>(If blank Search all items will be listed)</i> :
+          <ul>
+              <li ng-repeat="item in NIDCtrl.SearchList ">
+                <!-- | filter : NIDCtrl.searchTerm -->
+                ({{item.short_name| uppercase}}) - {{item.name | uppercase}} :
+                  <button type="button"
+                  ng-click="NIDCtrl.RemoveItem($index)" name="btnRemove">
+                  Don't want this one!
+                </button>
+                <p> {{item.description}}</P>
+
+              </li>
+          </ul>
+          <div class="emptyMessage" ng-if= "NIDCtrl.SearchList.length <= 0">Nothing found</div>
+        </div>
+      </div>
+    </div>
+</body>
+</html>
