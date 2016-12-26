@@ -1,0 +1,8 @@
+<div class="emptyMessage" ng-if= "list.found.length <= 0">Nothing found</div>
+<ul>
+    <li ng-repeat="item in list.found" class="ng-binding ng-scope">
+        ({{item.short_name| uppercase}}) - {{item.name | uppercase}} :
+        <button ng-click="list.onRemove({index: $index});">Don't want this one!</button>
+        <br>{{item.description}}
+    </li>
+</ul>
